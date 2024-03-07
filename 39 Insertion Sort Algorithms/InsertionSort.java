@@ -4,7 +4,7 @@ public class InsertionSort{
         insertionsort(arr);
         System.out.println("The sorted array is: ");
         for(int val : arr){
-            System.out.println(val + " ");
+            System.out.print(val + " ");
         }           
         }  
     
@@ -12,18 +12,19 @@ public class InsertionSort{
     // Function to sort an array using the insertion sort algorithm
     public static void insertionsort(int arr[]) {
         int n = arr.length;
-       
-        
-        for(int i=1;i<n;i++){
-            int j=1;
-            while (j>0&& arr[j]>arr[j-1]) {
+    
+        for (int i = 1; i < n; i++) {
+            int j = i;
+            while (j > 0 && arr[j] < arr[j - 1]) {
                 int temp = arr[j];
                 arr[j] = arr[j - 1];
                 arr[j - 1] = temp;
-                j--;              
-            }                                          
-        }           
+                j--;
+            }
+        }
+    }
+     
     }           
-}
+
                 
             
