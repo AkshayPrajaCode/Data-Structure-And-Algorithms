@@ -1,45 +1,48 @@
 public class MegeSort{
+    static void displayArr(int[] arr){
+        for(int val : arr){
+            System.out.print(val + " ");
+        }
+    }
+    static void merge(int[] arr, int l, int mid, int r){
+        int n1 = mid-l+1;
+        int n2 = r-mid;
+        int[] left = new int[n1];
+        int[] right = new int[n2];
+        int i, j, k;
+        for(i = 0; i < n1; i++) left[i] = arr[l+i];
+        for(j = 0; j < n2; j++) right[j] = arr[mid+1+j];
+        i = 0;
+        j = 0;
+        k = l;
+        while(i < n1 && j < n2){
+            if(left[i] < right[j])
+                arr[k++] = left[i++];
+            else
+                arr[k++] = right[j++];
+        }
+        while(i < n1)
+            arr[k++] = left[i++];
+        while (j < n2)
+            arr[k++] = right[j++];
+    }
+    static void mergeSort(int[] arr, int l, int r){
+        if(l >= r) return;
+        int mid = (l+r)/2;
+        mergeSort(arr, l, mid);
+        mergeSort(arr, mid+1, r);
+        merge(arr, l, mid, r);
+    }
+
     public static void main(String[] args) {
-        int arr[] = {2, 4, 7,54,98,76,53,638};
-        
-        System.out.println("Original Array\n");
-        MergeSortAlgo(arr,0,arr.length-1);
-        
-        /*
-        * 2, 4, 7,54,98,76,53,638
-        */
-        
-        System.out.println("After Sorting Array\n");
-        displayArr(arr);
-        
-        /*
-        * 2, 4, 7,53,54,76,98,638
-        */
+        int[] arr = {45,75,875,84,584,54,64};
+        int n = arr.length;
+        System.out.println("\nArray before sorting\n");
+        displayArr(arr); // 4 1 3 5 2
+        mergeSort(arr, 0, n-1);
+        System.out.println();
+        System.out.println("\nArray after sorting\n");
+        displayArr(arr); // 1 2 3 4 5
     }
-    
-    public  static void MergeSortAlgo(int[] arr, int i, int j) {
-        throw new UnsupportedOperationException("Unimplemented method 'MergeSortAlgo'");
-        if (i>=j) {
-            return;
-        }
-        int mid_pointer=(i+j)/2;
-        
-        MergeSortAlgo(arr, i, mid_pointer);
-        MergeSortAlgo(arr, mid_pointer+1, j);
-        mergeFunction(arr,mid_pointer,i,j);
-    }
-    
-    private static void mergeFunction(int[] arr, int mid_pointer, int i, int j) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'mergeFunction'");
-    }
-    
-    public static void displayArr(int[] arr) {
-        throw new UnsupportedOperationException("Unimplemented method 'displayArr'");
-        
-        for (int i : arr) {
-            System.out.println(i + " ");
-        }
-    }
-    
 }
+
